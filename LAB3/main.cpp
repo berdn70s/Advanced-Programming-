@@ -54,8 +54,43 @@ public:
         return (front == NULL);
     }
 };
+class Stack{
+private:
+    Node *top;
+    int size;public:
+public:
+    void push(int a){
+        Node *temp = new Node(a, top);
+        top = temp;
+        size++;
+    };
+    void pop() {
+        if (top == NULL) {
+            cout << "Stack is empty..." << endl;
+            return;
+        }
+        Node *temp = top;
+        top = top->next;
+        delete temp;
+        size--;
+    }
+    int getTopValue() {
+        if (top == NULL) {
+            cout << "Stack is empty" << endl;
+            return -1;
+        }
+        return top->data;
+    }
+    int getSize() {
+        return size;
+    }
+    bool isEmpty() {
+        return (top == NULL);
+    }
+};
 
 int main() {
+    //This line is for queue implementation
     Queue q;
     q.enqueue(1);
     q.enqueue(2);
@@ -72,5 +107,23 @@ int main() {
     } else {
         cout << "Queue is not empty" << endl;
     }
-    return 0;
-}
+
+
+    //This line is for stack implementation
+    Stack s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    cout << "Stack size is " << s.getSize() << endl;
+    cout << "Top element is " << s.getTopValue() << endl;
+    s.pop();
+    cout << "Stack size is " << s.getSize() << endl;
+    cout << "Top element is " << s.getTopValue() << endl;
+    s.pop();
+    s.pop();
+    if (s.isEmpty()) {
+        cout << "Stack is empty" << endl;
+    } else {
+        cout << "Stack is not empty" << endl;
+    }
+    return 0;}
